@@ -29,3 +29,16 @@ class LectureDBManagement:
                 true_count = 0
                 compare.clear()
         return result
+    
+    def update(self,flag,status,Lecture,kind,credit,time,grade,description):     #講義情報を追加・更新する
+            if flag >= 0:
+                insert_Data = status+","+Lecture+","+kind+","+credit+","+time+","+grade+","+description+"\n"
+                with open("lecture_db.csv") as f:
+                    lines = f.readlines()
+                    lines[flag] = insert_Data
+                with open("lecture_db.csv","w") as f:
+                    f.writelines(lines)
+            elif flag  == -1:
+                update_Info = "\n"+status+","+Lecture+","+kind+","+credit+","+time+","+grade+","+description
+                with open("lecture_db.csv","a") as f:
+                    f.write(update_Info)
