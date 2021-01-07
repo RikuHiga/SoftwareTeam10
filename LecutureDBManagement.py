@@ -42,3 +42,11 @@ class LectureDBManagement:
                 update_Info = "\n"+status+","+Lecture+","+kind+","+credit+","+time+","+grade+","+description
                 with open("lecture_db.csv","a") as f:
                     f.write(update_Info)
+                    
+                    
+    def delete(self,place):     #講義情報を削除する
+            with open("lecture_db.csv")as f:
+                lines = f.readlines()
+                lines.pop(place)
+            with open("lecture_db.csv","w") as f:
+                f.writelines(lines)
